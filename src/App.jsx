@@ -5,7 +5,7 @@ import './App.css'
 import FCRegister from './FCComps/FCRegister'
 import FCLogIn from './FCComps/FCLogIn'
 import FCProfile from './FCComps/FCProfile'
-import { Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -26,11 +26,14 @@ function App() {
 
   return (
     <div>
-    <Routes>
-      <Route path="/register" element={<FCRegister/>}/>
-      <Route path="/register" element={<FCProfile/>}/>
-      <Route path="/register" element={<FCLogIn/>}/>
-    </Routes>
+      <Link to="/register">Register</Link> |{"\t"}
+      <Link to="/profile">Profile</Link> |{"\t"}
+      <Link to="/login">LogIn</Link>
+      <Routes>
+        <Route path="/register" element={<FCRegister />} />
+        <Route path="/profile" element={<FCProfile />} />
+        <Route path="/login" element={<FCLogIn />} />
+      </Routes>
     </div>
   )
 }
