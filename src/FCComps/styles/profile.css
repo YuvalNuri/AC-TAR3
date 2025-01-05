@@ -56,19 +56,21 @@ button {
     cursor: pointer;
     font-size: 1rem;
     margin: 5px;
+    width: 20vh;
+    height: 7vh;
 }
 
-.update-button {
+.edit-button {
     background-color: #6c757d;
     color: #fff;
 }
 
-.delete-button {
+.logOut-button {
     background-color: #dc3545;
     color: #fff;
 }
 
-.copy-button {
+.game-button {
     background-color: #007bff;
     color: #fff;
 }

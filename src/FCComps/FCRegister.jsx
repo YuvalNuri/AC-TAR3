@@ -1,17 +1,25 @@
 import React, { useState } from 'react'
 import './styles/Reg.css';
 
-export default function FCRegister() {
+export default function FCRegister(props) {
 
-       const [user, setUser] = useState("");
-
-       const handleRegister = (event) => {
+       const RegisterUser = (event) => {
               event.preventDefault(); // למנוע רענון של הדף
               const formData = new FormData(event.target); // יצירת אובייקט FormData מהטופס
               const data = Object.fromEntries(formData.entries()); // הפיכת FormData לאובייקט רגיל
 
+              if(data.username=="admin" || props.users.some(user => user.username === data.username)){
+                     alert('שם משתמש זה תפוס! נסה שנית');
+                     return;
+              }
+
               if (data.password !== data.confirmPassword) {
                      alert('הסיסמאות אינן תואמות.');
+                     return;
+              }
+
+              if(props.users.some(user => user.email === data.email)){
+                     alert('כתובת דוא"ל תפוסה! נסה שנית');
                      return;
               }
 
@@ -21,20 +29,27 @@ export default function FCRegister() {
                      alert('אנא בחר עיר מתוך הרשימה.');
                      return;
               }
-              delete data.confirmPassword;
-              setUser(data); // שמירת הנתונים ב-state של user
-              console.log(data); // הצגת הנתונים שנשמרו
-              event.target.reset();
+
+              const file = event.target.profilePicture.files[0];
+              const reader = new FileReader();
+              reader.onload = () => {
+                     data.profilePicture = reader.result; // הוספת תמונת הפרופיל לנתונים
+                     delete data.confirmPassword;
+                     console.log(data); // הצגת הנתונים שנשמרו
+                     alert("נרשמת בהצלחה. ברוך הבא!")
+                     event.target.reset();
+                     props.sendUser2Main(data);
+              };
+              reader.readAsDataURL(file); // קריאת הקובץ כ-Base64
        };
 
        return (
               <div className="form-container" >
-                     <form id="register-form" onSubmit={handleRegister}>
+                     <form id="register-form" onSubmit={RegisterUser}>
                             <h1>טופס הרשמה</h1>
-
                             <label htmlFor="username">שם משתמש</label>
                             <input type="text" id="username" name="username" maxLength="60"
-                                   pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]*"
+                                   pattern="^[A-Za-z0-9._%+\-]+$"
                                    required title="אנא הזן אותיות לועזיות, מספרים ותווים מיוחדים בלבד" />
 
                             <label htmlFor="password">סיסמה</label>
@@ -58,7 +73,7 @@ export default function FCRegister() {
 
                             <label htmlFor="email">כתובת מייל</label>
                             <input type="email" id="email" name="email"
-                                   pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$"
+                                   pattern="^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[Cc][Oo][Mm]$"
                                    required title="אנא הזן כתובת מייל תקינה הכוללת רק אותיות לועזיות, תו @ אחד ו-.com בסוף" />
 
                             <label htmlFor="birthDate">תאריך לידה</label>

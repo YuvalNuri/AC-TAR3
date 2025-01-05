@@ -1,0 +1,103 @@
+/* עיצוב לטבלה */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* כותרת הטבלה */
+.admin-table thead {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.admin-table thead th {
+  padding: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+/* שורות וגוף הטבלה */
+.admin-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.admin-table tbody td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+/* עיצוב עבור עמודת שם משתמש עם תמונה */
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+.user-info span {
+  color: #0078d4;
+  font-weight: bold;
+}
+
+/* כפתורים */
+.edit-btn, .delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.edit-btn {
+  background-color: #0078d4;
+  color: #ffffff;
+}
+
+.edit-btn:hover {
+  background-color: #005bb5;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* מיכל כללי */
+.system-admin-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+}
+
+.system-admin-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 24px;
+}
